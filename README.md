@@ -1,2 +1,68 @@
 # Deber_Quito
 LA MITAD DEL MUNDO
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			body {background-color: black;}
+			h1 { color: blue; }
+			h2 { color: aqua; }
+			p { color: white; }
+			ul { color: white; }
+		</style>
+	</head>
+	
+	<body>
+		<header>
+			<center>
+				<h1>Quito la Mitad del Mundo</h1>
+			</center>
+		</header>
+		
+		<main>
+			<h2>Información geográfica</h2>
+			<p>Quito es la segunda ciudad capital más alta del mundo a 2830 metros sobre el nivel del mar, tiene una superficie de 4.183 km² y alrededor de 2.2 millones de habitantes. La ciudad se ha desarrollado en el eje norte-sur (tiene más de 80 km de largo y 5 </p>
+			
+			<h2>Clima</h2>
+			<p>El clima de Quito es variable, con temperaturas que pueden ir de los 25 grados centígrados de día a los 10 grados en la noche y no es extraño que en un mismo día se combinen fuertes lluvias, temperaturas bajas y soles brillantes. </p>
+			
+			<h2>Atractivos turísticos más importantes</h2>
+			<ul>
+				<li>Monumento a la Mitad del Mundo</li>
+				<li>Museo Inti Ñan</li>
+				<li>Cascada San Carlos</li>
+				<li>Complejo Turístico Plaza Mitad del Mundo</li>
+			</ul>
+			<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Quito.jpg/250px-Quito.jpg" height="400">
+			
+			<h2>Comidas típicas</h2>
+			<p>La gastronomía de la región es rica y variada, con platos típicos como:</p>
+			<ul>
+				<li>Hornado: cerdo asado acompañado de papas y mote</li>
+				<li>Locro: sopa espesa de papas con maíz y queso</li>
+				<li>Empanadas de viento: empanadas fritas rellenas de queso</li>
+				<li>Churrasco: filete de carne asado acompañado de arroz, papas fritas y ensalada</li>
+			</ul>
+			
+			<h2>Calculadora de distacia a Quito</h2>
+			<p>Su ubicación actual: <span id="location"></span></p>
+			<p>Distancia a la mitad del mundo: <span id="distance"></span></p>
+			<script>
+				navigator.geolocation.getCurrentPosition(function (position) {
+					var lat1 = position.coords.latitude;
+					var lon1 = position.coords.longitude;
+					var lat2 = -0.0102496 ;
+					var lon2 = -78.4464668;
+					var R = 6371; // Radio de la Tierra (km)
+					var dLat = (lat2 - lat1) * (Math.PI / 180);
+					var dLon = (lon2 - lon1) * (Math.PI / 180);
+					var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+					var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+					var d = R * c;
+					document.getElementById("location").innerHTML = lat1 + ", " + lon1;
+					document.getElementById("distance").innerHTML = d + " km";
+				});
+			</script>	
+		</main>
+	</body>
+</html>
